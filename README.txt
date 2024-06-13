@@ -29,10 +29,6 @@ https://localhost:7057/HelloWorld/Welcome?name=Vandan&numtimes=4
 
 2024-06-16
 
-created seedfile in that many things I had add
-
-we have done cloned on 2 pc.
-
 
 
 

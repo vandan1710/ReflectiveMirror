@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ReflectiveMirror.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddDbContext<ReflectiveMirrorContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ReflectiveMirrorContext") ?? throw new InvalidOperationException("Connection string 'ReflectiveMirrorContext' not found.")));
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -37,7 +39,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Mirrors}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();
