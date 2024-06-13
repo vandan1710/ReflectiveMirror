@@ -29,6 +29,18 @@ https://localhost:7057/HelloWorld/Welcome?name=Vandan&numtimes=4
 
 2024-06-16
 
+1520
+
+Today we all update and build our website
+https://localhost:7261/
+
+We created page were our mirror data can be seen to everyone it should be access by all on web.
+
+In backend we build database where our Reflectivemirror company data can be stored 
+that what over products are and what are specification and price are all things are stored here in database.
+
+While in this project we added images to look better and informative.
+
 
 
 
