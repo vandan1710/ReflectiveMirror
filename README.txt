@@ -39,8 +39,20 @@ We created page were our mirror data can be seen to everyone it should be access
 In backend we build database where our Reflectivemirror company data can be stored 
 that what over products are and what are specification and price are all things are stored here in database.
 
+We have build many things like migration, Controller, Index file, and some file which required for executing project.
+
 While in this project we added images to look better and informative.
 
+Migration
 
+Migration of initial file
+20240613222058  
+
+Mirror Migration
+20240613222723
+
+
+for reference 
+https://localhost:7261/
 
 
