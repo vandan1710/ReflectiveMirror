@@ -55,4 +55,11 @@ Mirror Migration
 for reference 
 https://localhost:7261/
 
+2024-06-19
+
+1610
+
+Today we have change image of our product.
+change alignment of image and text on over welcome page
+
 
