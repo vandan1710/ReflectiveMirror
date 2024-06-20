@@ -68,6 +68,7 @@ Now we added code for authentication and authorization for login and register th
 added .css code for many pages as well as for data base to look better.
 
 and have added details in About us page 
+Their are so much changes we done in our project
 
 This is about us page url
 https://localhost:7261/Home/About
