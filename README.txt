@@ -62,4 +62,27 @@ https://localhost:7261/
 Today we have change image of our product.
 change alignment of image and text on over welcome page
 
+2210
+
+Now we added code for authentication and authorization for login and register that admin people only have authority to do modification.
+added .css code for many pages as well as for data base to look better.
+
+and added details in About us page 
+
+This is about us page url
+https://localhost:7261/Home/About
+
+This is Home page url
+https://localhost:7261/
+
+This is Products page url
+https://localhost:7261/Mirrors
+
+This is Privacy page url
+https://localhost:7261/Home/Privacy
+
+Migration
+
+20240620033505  this is Authentication migration
+
 

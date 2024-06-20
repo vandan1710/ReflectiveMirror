@@ -20,3 +20,68 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+/* site.css */
+
+/* Styling for the table */
+table.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+    table.table th, table.table td {
+        padding: 12px 15px;
+    }
+
+    table.table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    table.table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+        table.table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        table.table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+/* Styling for the links */
+a {
+    color: #009879;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* Styling for the heading */
+h1 {
+    color: #f3f3f3;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+}
+
+/* Styling for the 'Create New' link */
+p a {
+    background-color: #009879;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+    p a:hover {
+        background-color: #007f66;
+    }

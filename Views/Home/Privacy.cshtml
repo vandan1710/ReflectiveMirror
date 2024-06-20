@@ -1,6 +1,102 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>This is all Policy page</p>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 20px;
+        background-color: #e9f0f5;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .policy-section {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: background-color 0.3s ease;
+    }
+
+        .policy-section:hover {
+            background-color: ##f9f9f9;
+        }
+
+    h3 {
+        color: #555;
+        font-size: 20px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 15px;
+        line-height: 1.8;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+</style>
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="policy-section">
+    <h3>1. Information Collection</h3>
+    <p>
+        <strong>Personal Information:</strong> Describe the types of personal data you collect (e.g., name, address, email) and how you collect it (e.g., directly from users, through cookies).
+    </p>
+    <p>
+        <strong>Usage Information:</strong> Explain what non-personal information you collect automatically (e.g., IP address, browser type) and why (e.g., to improve website functionality).
+    </p>
+    <p>
+        <strong>Financial Information:</strong> Clarify how financial information (e.g., credit card details) is handled, emphasizing security measures and third-party involvement (e.g., payment processors).
+    </p>
+</div>
+
+<div class="policy-section">
+    <h3>2. Use of Information</h3>
+    <p>
+        <strong>Purpose:</strong> State the primary reasons for collecting user data (e.g., order processing, customer support) and how it benefits users.
+    </p>
+    <p>
+        <strong>Communication:</strong> Outline how you use collected information to communicate with users (e.g., updates, promotional offers) and provide opt-out options.
+    </p>
+    <p>
+        <strong>Improvement:</strong> Detail how collected data helps improve services and user experience (e.g., analytics, personalization).
+    </p>
+</div>
+
+<div class="policy-section">
+    <h3>3. Information Sharing and Security</h3>
+    <p>
+        <strong>Sharing Practices:</strong> Explain under what circumstances you share personal information with third parties (e.g., service providers, legal requirements) and how you ensure confidentiality.
+    </p>
+    <p>
+        <strong>Security Measures:</strong> Describe the security protocols in place to protect user data from unauthorized access, breaches, and misuse (e.g., encryption, access controls).
+    </p>
+    <p>
+        <strong>User Control:</strong> Inform users about their rights regarding their personal data (e.g., access, correction, deletion) and how they can exercise these rights.
+    </p>
+</div>
+
+<div class="policy-section">
+    <h3>4. Policy Updates and Contact Information</h3>
+    <p>
+        <strong>Policy Updates:</strong> Explain how and when updates to the privacy policy will be communicated to users and where they can access the latest version.
+    </p>
+    <p>
+        <strong>Contact Information:</strong> Provide contact details for users to reach out with questions, concerns, or requests related to their privacy and data handling.
+    </p>
+</div>

@@ -70,7 +70,7 @@ using (var scope = app.Services.CreateScope())
 {
     var um = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-    string adminEmail = "admin@mirrors.com";
+    string adminEmail = "admin@reflectivemirrors.com";
     string password = builder.Configuration.GetConnectionString("AdminPassword") ?? "DEFAULT_pa$$word2024";
 
     if (await um.FindByEmailAsync(adminEmail) == null)

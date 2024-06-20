@@ -7,9 +7,10 @@
 
 @{
     ViewData["Title"] = "Index";
+  
 }
 
-<h1>Index</h1>
+<h2>Index</h2>
 
 @if (User.IsInRole("Admin"))
 {
@@ -39,7 +40,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Type)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -82,4 +85,87 @@
             </tr>
         }
     </tbody>
+    <script>
+                /* Global styles */
+        body {
+            font - family: Arial, sans - serif;
+            line - height: 1.6;
+            color: #333;
+            margin: 20px;
+            background - color: #f5f5f5;
+        }
+
+        h1 {
+            font - size: 24px;
+            text - align: center;
+            margin - bottom: 20px;
+        }
+
+        /* Table styles */
+        .table {
+            width: 100 %;
+            border - collapse: collapse;
+            background - color: #fff;
+            box - shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border - radius: 8px;
+            overflow: hidden;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text - align: left;
+            border - bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background - color: #f0f0f0;
+            color: #333;
+            text - transform: uppercase;
+        }
+
+        .table td {
+            vertical - align: middle;
+        }
+
+        /* Row hover effect */
+        .table tbody tr:hover {
+            background - color: #e9f5f5; /* Light blue hover background */
+        }
+
+        /* Actions column */
+        .table.actions {
+            text - align: center;
+        }
+
+        .table.actions a {
+            display: inline - block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            text - decoration: none;
+            color: #333;
+            border: 1px solid #ccc;
+            border - radius: 4px;
+            transition: background - color 0.3s ease, color 0.3s ease;
+        }
+
+        .table.actions a:hover {
+            background - color: #4CAF50; /* Green hover background */
+            color: #fff; /* White text on hover */
+        }
+
+        /* Admin specific styles */
+        .table.actions a.admin {
+            background - color: #FF5722; /* Red for admin actions */
+            color: #fff;
+        }
+
+        .table.actions a.admin:hover {
+            background - color: #D32F2F; /* Darker red on hover */
+        }
+
+    </script>
+
+   
+
 </table>
