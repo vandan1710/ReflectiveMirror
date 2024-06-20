@@ -67,7 +67,7 @@ change alignment of image and text on over welcome page
 Now we added code for authentication and authorization for login and register that admin people only have authority to do modification.
 added .css code for many pages as well as for data base to look better.
 
-and added details in About us page 
+and have added details in About us page 
 
 This is about us page url
 https://localhost:7261/Home/About
