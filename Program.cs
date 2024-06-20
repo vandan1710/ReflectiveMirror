@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -49,5 +50,42 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Mirrors}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+using (var scope = app.Services.CreateScope())
+{
+    var rm = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    var roles = new[] { "User", "Admin" };
+
+    foreach (var role in roles)
+    {
+        if (! await rm.RoleExistsAsync(role))
+        {
+            await rm.CreateAsync(new IdentityRole(role));
+        }
+    }
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var um = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    string adminEmail = "admin@mirrors.com";
+    string password = builder.Configuration.GetConnectionString("AdminPassword") ?? "DEFAULT_pa$$word2024";
+
+    if (await um.FindByEmailAsync(adminEmail) == null)
+    {
+        var admin = new IdentityUser
+        {
+            Email = adminEmail,
+            UserName = adminEmail,
+            EmailConfirmed = true
+        };
+
+        await um.CreateAsync(admin, password);
+
+        await um.AddToRoleAsync(admin, "Admin");
+    }
+}
 
 app.Run();
