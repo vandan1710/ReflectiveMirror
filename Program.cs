@@ -1,14 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ReflectiveMirror.Data;
-using Microsoft.Extensions.DependencyInjection;
 using ReflectiveMirror.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure services
 builder.Services.AddDbContext<ReflectiveMirrorContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ReflectiveMirrorContext") ?? throw new InvalidOperationException("Connection string 'ReflectiveMirrorContext' not found.")));
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ReflectiveMirrorContext")
+                         ?? throw new InvalidOperationException("Connection string 'ReflectiveMirrorContext' not found.")));
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -20,60 +24,31 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+// Seed data
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
+    // Initialize database seed data
     SeedData.Initialize(services);
-}
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
-
-using (var scope = app.Services.CreateScope())
-{
-    var rm = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
 
     var roles = new[] { "User", "Admin" };
 
     foreach (var role in roles)
     {
-        if (! await rm.RoleExistsAsync(role))
+        if (!roleManager.RoleExistsAsync(role).Result)
         {
-            await rm.CreateAsync(new IdentityRole(role));
+            roleManager.CreateAsync(new IdentityRole(role)).Wait();
         }
     }
-}
-
-using (var scope = app.Services.CreateScope())
-{
-    var um = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
     string adminEmail = "admin@reflectivemirrors.com";
-    string password = builder.Configuration.GetConnectionString("AdminPassword") ?? "DEFAULT_pa$$word2024";
+    string password = builder.Configuration.GetValue<string>("AdminPassword") ?? "DEFAULT_pa$$word2024";
 
-    if (await um.FindByEmailAsync(adminEmail) == null)
+    if (userManager.FindByEmailAsync(adminEmail).Result == null)
     {
         var admin = new IdentityUser
         {
@@ -82,10 +57,34 @@ using (var scope = app.Services.CreateScope())
             EmailConfirmed = true
         };
 
-        await um.CreateAsync(admin, password);
-
-        await um.AddToRoleAsync(admin, "Admin");
+        var result = userManager.CreateAsync(admin, password).Result;
+        if (result.Succeeded)
+        {
+            userManager.AddToRoleAsync(admin, "Admin").Wait();
+        }
     }
 }
+
+// Configure the HTTP request pipeline
+if (app.Environment.IsDevelopment())
+{
+    app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthentication(); // Add UseAuthentication before UseAuthorization
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();
