@@ -59,9 +59,36 @@ Updated product images and adjusted alignment on the welcome page.
  Styled various pages and the database interface with CSS. 
  Enhanced the About Us page with detailed information.
 
+About Us:https://localhost:7261/Home/About
+Home Page:https://localhost:7261/
+Products Page:https://localhost:7261/Mirrors
+Privacy Page:https://localhost:7261/Home/Privacy
 
-About Us: About Us
-Home Page: Home Page
-Products Page: Products Page
-Privacy Page: Privacy Page
 Migration for Authentication: 20240620033505
+
+
+Project Setup
+
+Clone the repository from Git.
+Open the solution in Visual Studio 2022.
+Restore the NuGet packages.
+Apply migrations to set up the database.
+Run the application.
+
+
+Features
+
+Public access to product data.
+Admin authentication and authorization.
+Detailed product listings with specifications and prices.
+Visually appealing UI with images and styling.
+Comprehensive About Us page.
+
+
+Usage
+
+Navigate to the Home page to view the main content.
+Use the Products page to see detailed product information.
+Visit the About Us page to learn more about the company.
+Admins can log in to manage product data and website content.
+
